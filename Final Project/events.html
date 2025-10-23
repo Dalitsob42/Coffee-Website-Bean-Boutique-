@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Join our coffee events and workshops at Bean Boutique. Learn brewing techniques, latte art, and coffee tasting from our experts.">
+    <title>Events & Workshops | Bean Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #6F4E37; 
+            --secondary-color: #C4A484; 
+            --accent-color: #8B5A2B; 
+            --light-color: #F5F5DC;
+            --dark-color: #3A2E24; 
+            --text-color: #333;
+            --white: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-color);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--white);
+            background-color: var(--primary-color);
+        }
+        
+        .cart-btn {
+            background-color: var(--dark-color);
+            color: var(--white) !important;
+            padding: 0.5rem 1.5rem !important;
+        }
+        
+        .cart-btn:hover {
+            background-color: var(--accent-color) !important;
+        }
+        
+        .cart-count {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 0.3rem;
+        }
+        
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .events {
+            width: 100%;
+            text-align: center;
+        }
+        
+        #events-heading {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .events-intro {
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .events-grid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 2rem;
+            width: 100%;
+        }
+        
+        .event-card {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            background: var(--white);
+            transition: var(--transition);
+        }
+        
+        .event-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .event-image {
+            flex: 1;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .event-card:hover .event-image img {
+            transform: scale(1.03);
+        }
+        
+        .event-details {
+            padding: 1.8rem;
+            flex: 1.5;
+            text-align: left;
+        }
+        
+        .event-details h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .event-description {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .event-meta {
+            margin: 1.5rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .event-meta p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 0;
+            color: var(--text-color);
+        }
+        
+        .event-meta i {
+            color: var(--primary-color);
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(106, 76, 147, 0.3);
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notification.fade-out {
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .social-links p {
+            margin-right: 0.5rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: var(--transition);
+                z-index: 1000;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .event-meta {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .event-card {
+                flex-direction: column;
+            }
+            
+            .event-image img {
+                height: 200px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .event-meta {
+                grid-template-columns: 1fr;
+            }
+            
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <nav class="navbar" aria-label="Main navigation">
+                <a href="index.html" class="nav-brand">
+                    <img src="images/logo.jpg" alt="Bean Boutique Logo" class="logo" loading="lazy">
+                    <span>Bean Boutique</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> <span class="nav-text">Home</span></a>
+                    <a href="coffee.html"><i class="fas fa-coffee" aria-hidden="true"></i> <span class="nav-text">Coffee</span></a>
+                    <a href="equipment.html"><i class="fas fa-mug-hot" aria-hidden="true"></i> <span class="nav-text">Equipment</span></a>
+                    <a href="events.html" class="active"><i class="fas fa-calendar-alt" aria-hidden="true"></i> <span class="nav-text">Events</span></a>
+                    <a href="offers.html"><i class="fas fa-tag" aria-hidden="true"></i> <span class="nav-text">Special Offers</span></a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i> 
+                        <span class="nav-text">Cart</span>
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
+                
+                <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="events" aria-labelledby="events-heading">
+            <h1 id="events-heading">Upcoming Events & Workshops</h1>
+            <p class="events-intro">Join our expert-led sessions to enhance your coffee knowledge and skills.</p>
+            
+            <div class="events-grid">
+                <article class="event-card" aria-labelledby="brewing-workshop">
+                    <div class="event-image">
+                        <img src="images/Coffee-Brewing-Techniques.webp" alt="Barista demonstrating coffee brewing techniques" loading="lazy">
+                    </div>
+                    <div class="event-details">
+                        <h2 id="brewing-workshop">Coffee Brewing Workshop</h2>
+                        <p class="event-description">Master the art of brewing the perfect cup with our hands-on workshop covering various methods and techniques.</p>
+                        <div class="event-meta">
+                            <p><i class="fas fa-calendar-day" aria-hidden="true"></i> <time datetime="2024-03-15">March 15, 2024</time></p>
+                            <p><i class="fas fa-clock" aria-hidden="true"></i> 09:00 AM - 06:00 PM</p>
+                            <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Bean Boutique, Lusaka</p>
+                            <p class="price">ZMW 250.00</p>
+                        </div>
+                        <button class="cta-button" onclick="registerEvent('Coffee Brewing Workshop', '2024-03-15')" aria-label="Register for Coffee Brewing Workshop on March 15, 2024">
+                            <i class="fas fa-ticket-alt" aria-hidden="true"></i> Register Now
+                        </button>
+                    </div>
+                </article>
+
+                <article class="event-card" aria-labelledby="latte-art-class">
+                    <div class="event-image">
+                        <img src="images/latte.jpeg" alt="Beautiful latte art heart design" loading="lazy">
+                    </div>
+                    <div class="event-details">
+                        <h2 id="latte-art-class">Latte Art Class</h2>
+                        <p class="event-description">Learn professional techniques to create stunning latte art designs from our award-winning baristas.</p>
+                        <div class="event-meta">
+                            <p><i class="fas fa-calendar-day" aria-hidden="true"></i> <time datetime="2024-03-22">March 22, 2024</time></p>
+                            <p><i class="fas fa-clock" aria-hidden="true"></i> 2:00 PM - 4:00 PM</p>
+                            <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Bean Boutique, Lusaka</p>
+                            <p class="price">ZMW 180.00</p>
+                        </div>
+                        <button class="cta-button" onclick="registerEvent('Latte Art Class', '2024-03-22')" aria-label="Register for Latte Art Class on March 22, 2024">
+                            <i class="fas fa-ticket-alt" aria-hidden="true"></i> Register Now
+                        </button>
+                    </div>
+                </article>
+
+                <article class="event-card" aria-labelledby="tasting-event">
+                    <div class="event-image">
+                        <img src="images/coffee_trail.avif" alt="People participating in a coffee tasting session" loading="lazy">
+                    </div>
+                    <div class="event-details">
+                        <h2 id="tasting-event">Coffee Tasting Event</h2>
+                        <p class="event-description">Explore a world of flavors with our guided tasting of premium single-origin and blended coffees.</p>
+                        <div class="event-meta">
+                            <p><i class="fas fa-calendar-day" aria-hidden="true"></i> <time datetime="2024-03-29">March 29, 2024</time></p>
+                            <p><i class="fas fa-clock" aria-hidden="true"></i> 5:00 PM - 7:00 PM</p>
+                            <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> Bean Boutique, Lusaka</p>
+                            <p class="price">ZMW 200.00</p>
+                        </div>
+                        <button class="cta-button" onclick="registerEvent('Coffee Tasting Event', '2024-03-29')" aria-label="Register for Coffee Tasting Event on March 29, 2024">
+                            <i class="fas fa-ticket-alt" aria-hidden="true"></i> Register Now
+                        </button>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" aria-label="Site footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Bean Boutique. All rights reserved.</p>
+            <div class="social-links">
+                <p>Follow us:</p>
+                <a href="#" aria-label="Visit our Facebook page"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Visit our Instagram page"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Visit our Twitter page"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            navLinks.classList.toggle('active');
+            this.setAttribute('aria-expanded', !isExpanded);
+            this.innerHTML = isExpanded 
+                ? '<i class="fas fa-bars" aria-hidden="true"></i>'
+                : '<i class="fas fa-times" aria-hidden="true"></i>';
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    navLinks.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                }
+            });
+        });
+        
+        function registerEvent(eventName, eventDate) {
+            try {
+                let registrations = JSON.parse(localStorage.getItem('eventRegistrations')) || [];
+                
+                const isRegistered = registrations.some(reg => 
+                    reg.event === eventName && reg.date === eventDate
+                );
+                
+                if (isRegistered) {
+                    showNotification(`You're already registered for ${eventName}`, 'error');
+                    return;
+                }
+                
+                registrations.push({
+                    event: eventName,
+                    date: eventDate,
+                    registeredAt: new Date().toISOString()
+                });
+                
+                localStorage.setItem('eventRegistrations', JSON.stringify(registrations));
+                
+                showNotification(`Successfully registered for ${eventName}! A confirmation has been saved to your account.`);
+                
+            } catch (error) {
+                console.error('Registration error:', error);
+                showNotification('There was an error processing your registration. Please try again.', 'error');
+            }
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}" aria-hidden="true"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            
+            void notification.offsetWidth;
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const count = cart.reduce((total, item) => total + item.quantity, 0);
+                document.getElementById('cart-count').textContent = count;
+            } catch (error) {
+                console.error('Error loading cart count:', error);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover our premium coffee selection at Bean Boutique. Choose from espresso, light roast, and dark roast blends.">
+    <title>Coffee Selection | Bean Boutique</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6F4E37; 
+            --secondary-color: #C4A484; 
+            --accent-color: #8B5A2B; 
+            --light-color: #F5F5DC;
+            --dark-color: #3A2E24; 
+            --text-color: #333;
+            --white: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-color);
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--white);
+            background-color: var(--primary-color);
+        }
+        
+        .cart-btn {
+            background-color: var(--dark-color);
+            color: var(--white) !important;
+            padding: 0.8rem 1.5rem !important;
+        }
+        
+        .cart-btn:hover {
+            background-color: var(--accent-color) !important;
+        }
+        
+        .cart-count {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 0.3rem;
+        }
+        
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+        
+        .page-header h1 {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .search-section {
+            margin: 2rem 0 3rem;
+            text-align: center;
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .search-bar {
+            display: flex;
+            box-shadow: var(--shadow);
+            border-radius: 30px;
+            overflow: hidden;
+            background: var(--white);
+        }
+        
+        .search-bar input {
+            flex: 1;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-bar button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+            transition: var(--transition);
+            min-width: 60px;
+        }
+        
+        .search-bar button:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .coffee-selection {
+            margin: 3rem 0;
+        }
+        
+        .section-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+        
+        .coffee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .coffee-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .coffee-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .coffee-img-container {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .coffee-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .coffee-card:hover .coffee-img {
+            transform: scale(1.05);
+        }
+        
+        .coffee-content {
+            padding: 1.8rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .coffee-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .coffee-content p {
+            margin-bottom: 1.8rem;
+            color: var(--text-color);
+            flex: 1;
+            line-height: 1.7;
+        }
+        
+        .coffee-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            gap: 1rem;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.3rem;
+            white-space: nowrap;
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.3rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notification.error {
+            background-color: #e74c3c;
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 2.5rem 0;
+            margin-top: 5rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.2rem;
+            align-items: center;
+        }
+        
+        .social-links p {
+            margin-right: 0.5rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: var(--transition);
+                z-index: 1000;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .coffee-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            
+            .social-links {
+                justify-content: center;
+                margin-top: 1rem;
+            }
+            
+            .coffee-grid {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            
+            .coffee-content {
+                padding: 1.5rem;
+            }
+            
+            .coffee-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.2rem;
+            }
+            
+            .add-to-cart {
+                width: 100%;
+                justify-content: center;
+                padding: 0.8rem;
+            }
+            
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <nav class="navbar" aria-label="Main navigation">
+                <a href="index.html" class="nav-brand">
+                    <img src="images/logo.jpg" alt="Bean Boutique Logo" class="logo" loading="lazy">
+                    <span>Bean Boutique</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> <span class="nav-text">Home</span></a>
+                    <a href="coffee.html" class="active"><i class="fas fa-coffee" aria-hidden="true"></i> <span class="nav-text">Coffee</span></a>
+                    <a href="equipment.html"><i class="fas fa-mug-hot" aria-hidden="true"></i> <span class="nav-text">Equipment</span></a>
+                    <a href="events.html"><i class="fas fa-calendar-alt" aria-hidden="true"></i> <span class="nav-text">Events</span></a>
+                    <a href="offers.html"><i class="fas fa-tag" aria-hidden="true"></i> <span class="nav-text">Special Offers</span></a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i> 
+                        <span class="nav-text">Cart</span>
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
+                
+                <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Our Premium Coffee Selection</h1>
+            <p>Discover the perfect blend for your taste</p>
+        </section>
+
+        <section class="search-section" aria-labelledby="search-heading">
+            <div class="search-container">
+                <h2 id="search-heading" class="sr-only">Coffee Search</h2>
+                <div class="search-bar">
+                    <label for="search" class="sr-only">Search for coffee</label>
+                    <input type="text" id="search" placeholder="Search for coffee..." onkeyup="searchCoffee()" aria-label="Search for coffee">
+                    <button onclick="searchCoffee()" aria-label="Search">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="coffee-selection" aria-labelledby="coffee-heading">
+            <h2 id="coffee-heading" class="section-title">Our Coffee Selection</h2>
+            <div class="coffee-grid">
+                <article class="coffee-card" aria-labelledby="espresso-heading">
+                    <div class="coffee-img-container">
+                        <img src="images/Espresso004-1.jpg" alt="Espresso Blend coffee beans" class="coffee-img" loading="lazy" width="100" height="100">
+                    </div>
+                    <div class="coffee-content">
+                        <h3 id="espresso-heading">Espresso Blend</h3>
+                        <p>A rich and bold espresso blend with notes of chocolate and caramel. Perfect for those who enjoy a strong, full-bodied coffee experience.</p>
+                        <div class="coffee-footer">
+                            <p class="price">ZMW 150.00</p>
+                            <button class="add-to-cart" onclick="addToCart('Espresso Blend', 150, 'espresso-blend')" aria-label="Add Espresso Blend to cart">
+                                <i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="coffee-card" aria-labelledby="light-roast-heading">
+                    <div class="coffee-img-container">
+                        <img src="images/light roast.jpeg" alt="Light Roast coffee beans" class="coffee-img" loading="lazy" width="90" height="90">
+                    </div>
+                    <div class="coffee-content">
+                        <h3 id="light-roast-heading">Light Roast</h3>
+                        <p>A bright and fruity light roast with hints of citrus and floral notes. Ideal for those who prefer a milder, more nuanced coffee flavor.</p>
+                        <div class="coffee-footer">
+                            <p class="price">ZMW 120.00</p>
+                            <button class="add-to-cart" onclick="addToCart('Light Roast', 120, 'light-roast')" aria-label="Add Light Roast to cart">
+                                <i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                
+                <article class="coffee-card" aria-labelledby="dark-roast-heading">
+                    <div class="coffee-img-container">
+                        <img src="images/dark-roast-coffee-2780939.webp" alt="Dark Roast coffee beans" class="coffee-img" loading="lazy" width="100" height="100">
+                    </div>
+                    <div class="coffee-content">
+                        <h3 id="dark-roast-heading">Dark Roast</h3>
+                        <p>A deep and smoky dark roast with a full-bodied flavor. Features rich, bold characteristics with a smooth finish.</p>
+                        <div class="coffee-footer">
+                            <p class="price">ZMW 160.00</p>
+                            <button class="add-to-cart" onclick="addToCart('Dark Roast', 160, 'dark-roast')" aria-label="Add Dark Roast to cart">
+                                <i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" aria-label="Site footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Bean Boutique. All rights reserved.</p>
+            <div class="social-links">
+                <p>Follow us:</p>
+                <a href="#" aria-label="Visit our Facebook page"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Visit our Instagram page"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Visit our Twitter page"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', function() {
+            const isExpanded = this.getAttribute('aria-expanded') === 'true';
+            navLinks.classList.toggle('active');
+            this.setAttribute('aria-expanded', !isExpanded);
+            this.innerHTML = isExpanded 
+                ? '<i class="fas fa-bars" aria-hidden="true"></i>'
+                : '<i class="fas fa-times" aria-hidden="true"></i>';
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    navLinks.classList.remove('active');
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    hamburger.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                }
+            });
+        });
+        
+        function searchCoffee() {
+            const input = document.getElementById('search').value.trim().toLowerCase();
+            const coffeeItems = document.querySelectorAll('.coffee-card');
+            
+            coffeeItems.forEach(item => {
+                const title = item.querySelector('h3').textContent.toLowerCase();
+                const description = item.querySelector('p').textContent.toLowerCase();
+                const matchesSearch = title.includes(input) || description.includes(input);
+                item.style.display = matchesSearch ? 'flex' : 'none';
+            });
+        }
+
+        function addToCart(name, price, id) {
+            try {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    showNotification(`${name} is already in your cart.`);
+                    return;
+                }
+                
+                cart.push({ 
+                    id,
+                    name, 
+                    price,
+                    quantity: 1,
+                    image: `${id}.jpg`
+                });
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                showNotification(`${name} added to cart!`);
+                
+            } catch (error) {
+                console.error('Error updating cart:', error);
+                showNotification('Could not add item to cart. Please try again.', 'error');
+            }
+        }
+
+        function updateCartCount() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const count = cart.reduce((total, item) => total + item.quantity, 0);
+                document.getElementById('cart-count').textContent = count;
+            } catch (error) {
+                console.error('Error updating cart count:', error);
+            }
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            void notification.offsetWidth;
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            searchCoffee();
+        });
+    </script>
+</body>
+</html>

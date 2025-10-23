@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover premium brewing equipment at Bean Boutique - French presses, pour over kits, grinders, and more for the perfect coffee experience.">
+    <title>Brewing Equipment | Bean Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #6F4E37; 
+            --secondary-color: #C4A484; 
+            --accent-color: #8B5A2B; 
+            --light-color: #F5F5DC; 
+            --dark-color: #3A2E24; 
+            --text-color: #333;
+            --white: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-color);
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--white);
+            background-color: var(--primary-color);
+        }
+        
+        .cart-btn {
+            background-color: var(--dark-color);
+            color: var(--white) !important;
+            padding: 0.5rem 1.5rem !important;
+        }
+        
+        .cart-btn:hover {
+            background-color: var(--accent-color) !important;
+        }
+        
+        .cart-count {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 0.3rem;
+        }
+        
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .equipment-section {
+            margin-top: 2rem;
+        }
+        
+        #equipment-heading {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1rem;
+            font-size: 2.5rem;
+        }
+        
+        .section-intro {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: var(--dark-color);
+            font-size: 1.1rem;
+        }
+        
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .equipment-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .equipment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .equipment-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .equipment-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+        
+        .equipment-card:hover .equipment-image img {
+            transform: scale(1.05);
+        }
+        
+        .equipment-details {
+            padding: 1.5rem;
+        }
+        
+        .equipment-details h2 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .equipment-description {
+            margin-bottom: 1rem;
+            color: var(--text-color);
+        }
+        
+        .equipment-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+        
+        .add-to-cart {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .add-to-cart:hover {
+            background-color: var(--accent-color);
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .social-links {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: var(--shadow);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: 1000;
+        }
+        
+        .notification.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .notification.error {
+            background-color: #dc3545;
+        }
+        
+        .notification.fade-out {
+            opacity: 0;
+            transform: translateY(100px);
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: var(--transition);
+                z-index: 1000;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+            
+            .equipment-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .equipment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <nav class="navbar" aria-label="Main navigation">
+                <a href="index.html" class="nav-brand">
+                    <img src="images/logo.jpg" alt="Bean Boutique Logo" class="logo" loading="lazy">
+                    <span>Bean Boutique</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> <span class="nav-text">Home</span></a>
+                    <a href="coffee.html"><i class="fas fa-coffee" aria-hidden="true"></i> <span class="nav-text">Coffee</span></a>
+                    <a href="equipment.html" class="active"><i class="fas fa-mug-hot" aria-hidden="true"></i> <span class="nav-text">Equipment</span></a>
+                    <a href="events.html"><i class="fas fa-calendar-alt" aria-hidden="true"></i> <span class="nav-text">Events</span></a>
+                    <a href="offers.html"><i class="fas fa-tag" aria-hidden="true"></i> <span class="nav-text">Special Offers</span></a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i> 
+                        <span class="nav-text">Cart</span> 
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
+                
+                <button class="hamburger" aria-label="Toggle navigation">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="equipment-section" aria-labelledby="equipment-heading">
+            <h1 id="equipment-heading">Brewing Equipment</h1>
+            <p class="section-intro">Elevate your coffee experience with our premium brewing tools and accessories.</p>
+            
+            <div class="equipment-grid">
+                <article class="equipment-card" aria-labelledby="french-press">
+                    <div class="equipment-image">
+                        <img src="equipment images/frenchpress.jpeg" alt="French press with coffee" loading="lazy" width="90" height="90">
+                    </div>
+                    <div class="equipment-details">
+                        <h2 id="french-press">French Press</h2>
+                        <p class="equipment-description">Classic French press for a rich and full-bodied brew. Made with durable stainless steel and double-walled insulation.</p>
+                        <div class="equipment-meta">
+                            <p class="price">ZMW 250.00</p>
+                            <button class="add-to-cart" data-id="fp001" data-name="French Press" data-price="250" data-image="equipment/french-press-thumb.jpg" aria-label="Add French Press to cart">
+                                <i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="equipment-card" aria-labelledby="pour-over">
+                    <div class="equipment-image">
+                        <img src="equipment images/pouroverkit.jpeg" alt="Pour over kit" loading="lazy" width="90" height="90">
+                    </div>
+                    <div class="equipment-details">
+                        <h2 id="pour-over">Pour Over Kit</h2>
+                        <p class="equipment-description">Complete kit for a clean and aromatic cup, including ceramic dripper, glass carafe, and reusable filters.</p>
+                        <div class="equipment-meta">
+                            <p class="price">ZMW 300.00</p>
+                            <button class="add-to-cart" data-id="po001" data-name="Pour Over Kit" data-price="300" data-image="equipment/pour-over-thumb.jpg" aria-label="Add Pour Over Kit to cart">
+                                <i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="equipment-card" aria-labelledby="coffee-grinder">
+                    <div class="equipment-image">
+                        <img src="equipment images/coffeegrinder.jpeg" alt="Coffee grinder" loading="lazy" width="90" height="90">
+                    </div>
+                    <div class="equipment-details">
+                        <h2 id="coffee-grinder">Coffee Grinder</h2>
+                        <p class="equipment-description">Premium grinder with 40 settings for the perfect grind size, from espresso to French press.</p>
+                        <div class="equipment-meta">
+                            <p class="price">ZMW 400.00</p>
+                            <button class="add-to-cart" data-id="cg001" data-name="Coffee Grinder" data-price="400" data-image="equipment/grinder-thumb.jpg" aria-label="Add Coffee Grinder to cart">
+                                <i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="equipment-card" aria-labelledby="espresso-machine">
+                    <div class="equipment-image">
+                        <img src="equipment images/espressomachine.jpeg" alt="Espresso machine" loading="lazy" width="90" height="90">
+                    </div>
+                    <div class="equipment-details">
+                        <h2 id="espresso-machine">Espresso Machine</h2>
+                        <p class="equipment-description">Professional-grade espresso machine with 15-bar pressure for café-quality drinks at home.</p>
+                        <div class="equipment-meta">
+                            <p class="price">ZMW 1,500.00</p>
+                            <button class="add-to-cart" data-id="em001" data-name="Espresso Machine" data-price="1500" data-image="equipment/espresso-thumb.jpg" aria-label="Add Espresso Machine to cart">
+                                <i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="equipment-card" aria-labelledby="coffee-scale">
+                    <div class="equipment-image">
+                        <img src="equipment images/coffeescale.jpg" alt="Digital coffee scale with timer" loading="lazy" width="90" height="90">
+                    </div>
+                    <div class="equipment-details">
+                        <h2 id="coffee-scale">Coffee Scale</h2>
+                        <p class="equipment-description">Precision scale with 0.1g accuracy, built-in timer, and waterproof design for perfect measurements.</p>
+                        <div class="equipment-meta">
+                            <p class="price">ZMW 200.00</p>
+                            <button class="add-to-cart" data-id="cs001" data-name="Coffee Scale" data-price="200" data-image="equipment/scale-thumb.jpg" aria-label="Add Coffee Scale to cart">
+                                <i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="equipment-card" aria-labelledby="travel-mug">
+                    <div class="equipment-image">
+                        <img src="equipment images/travelmug.jpeg" alt="Stainless steel insulated travel mug" loading="lazy" width="90" height="90">
+                    </div>
+                    <div class="equipment-details">
+                        <h2 id="travel-mug">Travel Mug</h2>
+                        <p class="equipment-description">Vacuum-insulated mug that keeps coffee hot for 6 hours, with leak-proof lid.</p>
+                        <div class="equipment-meta">
+                            <p class="price">ZMW 100.00</p>
+                            <button class="add-to-cart" data-id="tm001" data-name="Travel Mug" data-price="100" data-image="equipment/mug-thumb.jpg" aria-label="Add Travel Mug to cart">
+                                <i class="fas fa-cart-plus" aria-hidden="true"></i> Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" aria-label="Site footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Bean Boutique. All rights reserved.</p>
+            <div class="social-links">
+                <p>Follow us:</p>
+                <a href="#" aria-label="Visit our Facebook page"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Visit our Instagram page"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="#" aria-label="Visit our Twitter page"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times" aria-hidden="true"></i>'
+                : '<i class="fas fa-bars" aria-hidden="true"></i>';
+        });
+        
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    navLinks.classList.remove('active');
+                    hamburger.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                }
+            });
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+        });
+
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const item = {
+                    id: this.dataset.id,
+                    name: this.dataset.name,
+                    price: parseFloat(this.dataset.price),
+                    image: this.dataset.image,
+                    quantity: 1
+                };
+                
+                addItemToCart(item);
+            });
+        });
+
+        function addItemToCart(item) {
+            try {
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                
+                const existingItem = cart.find(cartItem => cartItem.id === item.id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push(item);
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                updateCartCount();
+                
+                showNotification(`${item.name} added to cart!`);
+                
+            } catch (error) {
+                console.error('Error updating cart:', error);
+                showNotification('Could not add item to cart', 'error');
+            }
+        }
+
+        function updateCartCount() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const count = cart.reduce((total, item) => total + item.quantity, 0);
+                document.getElementById('cart-count').textContent = count;
+            } catch (error) {
+                console.error('Error updating cart count:', error);
+            }
+        }
+
+        function showNotification(message, type = 'success') {
+            const notification = document.createElement('div');
+            notification.className = `notification ${type}`;
+            notification.innerHTML = `
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}" aria-hidden="true"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(notification);
+            
+            void notification.offsetWidth;
+            
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+                notification.classList.add('fade-out');
+                setTimeout(() => notification.remove(), 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

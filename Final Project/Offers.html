@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover exclusive coffee offers and subscription plans at Bean Boutique. Save on premium blends and brewing equipment.">
+    <title>Special Offers & Subscriptions | Bean Boutique</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #6F4E37; 
+            --secondary-color: #C4A484; 
+            --accent-color: #8B5A2B; 
+            --light-color: #F5F5DC; 
+            --dark-color: #3A2E24; 
+            --text-color: #333;
+            --white: #fff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--light-color);
+        }
+        
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            text-decoration: none;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+        
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--white);
+            background-color: var(--primary-color);
+        }
+        
+        .cart-btn {
+            background-color: var(--dark-color);
+            color: var(--white) !important;
+            padding: 0.5rem 1.5rem !important;
+        }
+        
+        .cart-btn:hover {
+            background-color: var(--accent-color) !important;
+        }
+        
+        .cart-count {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            padding: 0.2rem 0.5rem;
+            font-size: 0.8rem;
+            margin-left: 0.3rem;
+        }
+        
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--dark-color);
+            cursor: pointer;
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .offers-section {
+            margin-top: 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        #offers-heading {
+            color: var(--primary-color);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .section-header p {
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .offers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .offer-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .offer-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .offer-card.highlight {
+            border: 2px solid var(--accent-color);
+        }
+        
+        .offer-badge {
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background-color: #e74c3c;
+            color: white;
+            padding: 0.3rem 2rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+            width: 120px;
+            text-align: center;
+        }
+        
+        .offer-content {
+            padding: 2rem;
+        }
+        
+        .offer-card h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .offer-card p {
+            margin-bottom: 1.5rem;
+            color: var(--text-color);
+        }
+        
+        .offer-details {
+            margin: 1.5rem 0;
+            list-style: none;
+        }
+        
+        .offer-details li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .offer-details i {
+            color: var(--primary-color);
+        }
+        
+       
+        .subscription-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .tier {
+            background: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        .tier:hover {
+            transform: translateY(-3px);
+        }
+        
+        .tier.popular {
+            border: 2px solid var(--accent-color);
+        }
+        
+        .popular-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .tier h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .tier .price {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tier .price span {
+            font-size: 1rem;
+            color: var(--text-color);
+            font-weight: normal;
+        }
+        
+        .tier ul {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .tier ul li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .tier ul li:before {
+            content: "•";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .signup-form {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .signup-form input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .small-text {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+        
+        .cta-button.secondary {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+        }
+        
+        .cta-button.secondary:hover {
+            background-color: #d8b48c;
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: var(--white);
+            padding: 3rem 0 0;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .footer-section {
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-section p, 
+        .footer-section address p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-section ul li a {
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-section ul li a:hover {
+            color: var(--secondary-color);
+            padding-left: 5px;
+        }
+        
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+        }
+        
+        .socials {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .socials a {
+            color: var(--white);
+            font-size: 1.2rem;
+            transition: var(--transition);
+        }
+        
+        .socials a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+        
+        @media (max-width: 992px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background-color: var(--white);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: var(--transition);
+                z-index: 1000;
+                box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #offers-heading {
+                font-size: 2rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .subscription-tiers {
+                grid-template-columns: 1fr;
+            }
+            
+            .signup-form {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="nav-container">
+            <nav class="navbar" aria-label="Main navigation">
+                <a href="index.html" class="nav-brand">
+                    <img src="images/logo.jpg" alt="Bean Boutique Logo" class="logo" loading="lazy">
+                    <span>Bean Boutique</span>
+                </a>
+                
+                <div class="nav-links">
+                    <a href="index.html"><i class="fas fa-home" aria-hidden="true"></i> <span class="nav-text">Home</span></a>
+                    <a href="coffee.html"><i class="fas fa-coffee" aria-hidden="true"></i> <span class="nav-text">Coffee</span></a>
+                    <a href="equipment.html"><i class="fas fa-mug-hot" aria-hidden="true"></i> <span class="nav-text">Equipment</span></a>
+                    <a href="events.html"><i class="fas fa-calendar-alt" aria-hidden="true"></i> <span class="nav-text">Events</span></a>
+                    <a href="offers.html" class="active"><i class="fas fa-tag" aria-hidden="true"></i> <span class="nav-text">Offers</span></a>
+                    <a href="cart.html" class="cart-btn">
+                        <i class="fas fa-shopping-cart" aria-hidden="true"></i> 
+                        <span class="nav-text">Cart</span> 
+                        <span id="cart-count" class="cart-count">0</span>
+                    </a>
+                </div>
+                
+                <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="offers-section" aria-labelledby="offers-heading">
+            <div class="section-header">
+                <h1 id="offers-heading"><i class="fas fa-percentage" aria-hidden="true"></i> Special Offers & Subscriptions</h1>
+                <p>Enjoy exclusive deals and join our coffee subscription service</p>
+            </div>
+
+            <div class="offers-grid">
+        
+                <article class="offer-card highlight" aria-labelledby="bogo-offer">
+                    <div class="offer-badge">Limited Time</div>
+                    <div class="offer-content">
+                        <h2 id="bogo-offer">Buy One Get One Free!</h2>
+                        <p>Purchase any premium coffee blend and get another one of equal or lesser value absolutely free.</p>
+                        <ul class="offer-details">
+                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Applies to all 250g coffee bags</li>
+                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Valid until 30th November 2025</li>
+                            <li><i class="fas fa-check-circle" aria-hidden="true"></i> Online orders only</li>
+                        </ul>
+                        <button class="cta-button" onclick="addOfferToCart('bogo')" aria-label="Add Buy One Get One Free offer to cart">
+                            <i class="fas fa-cart-plus" aria-hidden="true"></i> Claim Offer
+                        </button>
+                    </div>
+                </article>
+
+                <article class="offer-card subscription" aria-labelledby="subscription-offer">
+                    <div class="offer-content">
+                        <h2 id="subscription-offer"><i class="fas fa-star" aria-hidden="true"></i> Subscribe & Save 15%</h2>
+                        <p>Join our coffee subscription and enjoy exclusive benefits:</p>
+                        <div class="subscription-tiers">
+                            <section class="tier" aria-labelledby="basic-tier">
+                                <h3 id="basic-tier">Basic</h3>
+                                <p class="price">ZMW 300<span>/month</span></p>
+                                <ul>
+                                    <li>1 premium coffee bag</li>
+                                    <li>Free delivery</li>
+                                    <li>5% discount on equipment</li>
+                                </ul>
+                                <button class="cta-button secondary" onclick="selectSubscription('Basic', 300)" aria-label="Select Basic subscription">Select</button>
+                            </section>
+                            <section class="tier popular" aria-labelledby="premium-tier">
+                                <div class="popular-badge">Most Popular</div>
+                                <h3 id="premium-tier">Premium</h3>
+                                <p class="price">ZMW 550<span>/month</span></p>
+                                <ul>
+                                    <li>2 premium coffee bags</li>
+                                    <li>Free delivery</li>
+                                    <li>10% discount on equipment</li>
+                                    <li>Exclusive tasting invites</li>
+                                </ul>
+                                <button class="cta-button" onclick="selectSubscription('Premium', 550)" aria-label="Select Premium subscription">Select</button>
+                            </section>
+                            <section class="tier" aria-labelledby="deluxe-tier">
+                                <h3 id="deluxe-tier">Deluxe</h3>
+                                <p class="price">ZMW 900<span>/month</span></p>
+                                <ul>
+                                    <li>4 premium coffee bags</li>
+                                    <li>Free delivery</li>
+                                    <li>15% discount on equipment</li>
+                                    <li>VIP event access</li>
+                                    <li>Free grinder with signup</li>
+                                </ul>
+                                <button class="cta-button secondary" onclick="selectSubscription('Deluxe', 900)" aria-label="Select Deluxe subscription">Select</button>
+                            </section>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="offer-card newsletter" aria-labelledby="newsletter-offer">
+                    <div class="offer-content">
+                        <h2 id="newsletter-offer"><i class="fas fa-envelope" aria-hidden="true"></i> Newsletter Signup</h2>
+                        <p>Subscribe to our newsletter for exclusive offers and updates</p>
+                        <div class="signup-form">
+                            <label for="newsletter-email" class="sr-only">Email Address</label>
+                            <input type="email" placeholder="Your email address" id="newsletter-email" required>
+                            <button class="cta-button" onclick="subscribeNewsletter()" aria-label="Subscribe to newsletter">
+                                <i class="fas fa-paper-plane" aria-hidden="true"></i> Subscribe
+                            </button>
+                        </div>
+                        <p class="small-text">We respect your privacy. Unsubscribe at any time.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer" aria-label="Site footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h3>Bean Boutique</h3>
+                <p>Premium coffee blends and artisan brewing equipment</p>
+                <div class="socials">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="footer-section links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="coffee.html">Our Coffees</a></li>
+                    <li><a href="equipment.html">Brewing Equipment</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="offers.html">Special Offers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section contact">
+                <h3>Contact Us</h3>
+                <address>
+                    <p><i class="fas fa-map-marker-alt" aria-hidden="true"></i> 124 Ibex Hill Extension, Lusaka</p>
+                    <p><i class="fas fa-phone" aria-hidden="true"></i> +260 771332726</p>
+                    <p><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:beanboutique@outlook.com">beanboutique@outlook.com</a></p>
+                </address>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Bean Boutique. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+    
+        document.addEventListener('DOMContentLoaded', function() {
+            updateCartCount();
+            
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', function() {
+                const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                navLinks.classList.toggle('active');
+                this.setAttribute('aria-expanded', !isExpanded);
+                this.innerHTML = isExpanded 
+                    ? '<i class="fas fa-bars" aria-hidden="true"></i>'
+                    : '<i class="fas fa-times" aria-hidden="true"></i>';
+            });
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (window.innerWidth <= 992) {
+                        navLinks.classList.remove('active');
+                        hamburger.setAttribute('aria-expanded', 'false');
+                        hamburger.innerHTML = '<i class="fas fa-bars" aria-hidden="true"></i>';
+                    }
+                });
+            });
+        });
+
+        function updateCartCount() {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const cartCountElement = document.getElementById('cart-count');
+                if (cartCountElement) {
+                    cartCountElement.textContent = cart.reduce((total, item) => total + (item.quantity || 1), 0);
+                }
+            } catch (e) {
+                console.error('Error updating cart count:', e);
+            }
+        }
+
+        function subscribeNewsletter() {
+            const emailInput = document.getElementById('newsletter-email');
+            const email = emailInput.value.trim();
+            
+            if (email && email.includes('@') && email.includes('.')) {
+                alert('Thank you for subscribing! Check your email for a welcome discount.');
+                emailInput.value = '';
+            } else {
+                alert('Please enter a valid email address');
+                emailInput.focus();
+            }
+        }
+
+        function addOfferToCart(offerType) {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                
+                if (offerType === 'bogo') {
+                  
+                    const existingOffer = cart.find(item => item.id === 'bogo-offer-2025');
+                    
+                    if (!existingOffer) {
+                        cart.push({
+                            id: 'bogo-offer-2025',
+                            name: "Buy One Get One Free Offer",
+                            price: 0,
+                            isOffer: true,
+                            validUntil: '2025-11-30',
+                            quantity: 1
+                        });
+                        localStorage.setItem('cart', JSON.stringify(cart));
+                        updateCartCount();
+                        alert('Special offer added to your cart! Redirecting to cart...');
+                        
+                        setTimeout(() => {
+                            window.location.href = 'cart.html';
+                        }, 1000);
+                    } else {
+                        alert('This offer is already in your cart. Redirecting to cart...');
+                        setTimeout(() => {
+                            window.location.href = 'cart.html';
+                        }, 1000);
+                    }
+                }
+            } catch (e) {
+                console.error('Error updating cart:', e);
+                alert('There was an error adding the offer to your cart');
+            }
+        }
+
+        function selectSubscription(tier, price) {
+            try {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                
+                const filteredCart = cart.filter(item => !item.isSubscription);
+                
+                filteredCart.push({
+                    id: `subscription-${tier.toLowerCase()}`,
+                    name: `${tier} Subscription`,
+                    price: price,
+                    isSubscription: true,
+                    recurring: true,
+                    quantity: 1
+                });
+                
+                localStorage.setItem('cart', JSON.stringify(filteredCart));
+                updateCartCount();
+                alert(`You've selected the ${tier} subscription! Redirecting to cart...`);
+               
+                setTimeout(() => {
+                    window.location.href = 'cart.html';
+                }, 1000);
+            } catch (e) {
+                console.error('Error selecting subscription:', e);
+                alert('There was an error processing your subscription');
+            }
+        }
+    </script>
+</body>
+</html>
